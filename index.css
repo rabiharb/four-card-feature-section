@@ -8,8 +8,8 @@
   --color-grayish-blue: 229, 6%, 66%;
   --color-light-gray: 0, 0%, 98%;
   /* font-sizes */
-  --fs-400: clamp(1rem, 3vw, 2rem);
-  --fs-300: clamp(0.8rem, 1vw, 1rem);
+  --fs-400: clamp(1rem, 3vw, 2.5rem);
+  --fs-300: clamp(0.8rem, 1vw, 1.1rem);
 }
 
 /* ----------------------------------------------------- 
@@ -21,9 +21,10 @@ body {
   background-color: hsl(var(--color-light-gray));
 }
 .container {
+  display: grid;
   width: 95%;
-  margin: 0 auto;
   max-width: 1250px;
+  margin: 0 auto;
 }
 
 *,
@@ -44,8 +45,7 @@ p {
   margin-block-start: var(--flow-gap, 1.5rem);
 }
 .flow > *:last-child {
-  /* margin-block-start: 0; */
-  margin-block-end: var(--flow-end-gap, 3rem);
+  margin-block-end: var(--flow-end-gap, 4rem);
 }
 
 /* font-utility */
@@ -62,11 +62,21 @@ p {
   font-size: var(--fs-200);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* ----------------------------------------------------- 
 ------------------------------------------------------------------ Title Section
 -------------------------------------------------------- */
 header {
-  /* text-align: center; */
   margin-top: 1rem;
   display: grid;
   justify-items: center;
@@ -96,7 +106,7 @@ header > p {
   display: flex;
   gap: 1rem;
   flex-direction: column;
-  padding: 2rem;
+  padding: clamp(1rem, 5vw, 2rem);
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 5px 10px hsl(var(--color-blue), 0.1);
@@ -104,7 +114,7 @@ header > p {
 .card > img {
   display: block;
   max-width: 100px;
-  width: 30%;
+  width: 20%;
   align-self: flex-end;
 }
 .card > h2 {
@@ -128,16 +138,26 @@ header > p {
 }
 
 @media (min-width: 875px) {
+  .container {
+    grid-template-areas:
+      "title"
+      "cards";
+  }
+  header {
+    grid-area: title;
+  }
   .card-container {
     display: grid;
+    grid-area: cards;
     place-items: center;
     gap: 2.5rem;
     grid-template-columns: 1fr 1fr 1fr;
   }
+
   .card-container > .two-cards {
+    display: grid;
     --flow-gap: 0;
     --flow-end-gap: 0;
     gap: 2.5rem;
-    display: grid;
   }
 }
