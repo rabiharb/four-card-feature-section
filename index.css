@@ -15,13 +15,17 @@
 /* ----------------------------------------------------- 
 ------------------------------------------------------------------ Universal / Utitlity Classes
 -------------------------------------------------------- */
-
+html {
+  font-size: 15px;
+}
 body {
   font-family: "Poppins", sans-serif;
   background-color: hsl(var(--color-light-gray));
 }
 .container {
   display: grid;
+  box-sizing: border-box;
+  padding: 4rem 0;
   width: 95%;
   max-width: 1250px;
   margin: 0 auto;
